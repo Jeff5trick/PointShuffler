@@ -1,7 +1,7 @@
 # PointShuffler
 ##  Anonymous Account Notice
  ·The submission account is purely anonymized and has no link to real-world identities. <br>
- ·This is a newly created blank account with no prior code submissions or historical activity.
+ ·This is a blank account with no prior code submissions or historical activity.
  
 ## Environment
 This project requires NVIDIA CUDA Basic Linear Algebra Subroutines (cuBLAS). <br>
