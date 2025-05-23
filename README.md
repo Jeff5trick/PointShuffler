@@ -8,10 +8,10 @@ This project requires NVIDIA CUDA Basic Linear Algebra Subroutines (cuBLAS). <br
 Official Deployment Reference: 'https://github.com/NVIDIA/CUDALibrarySamples/tree/master/cuBLAS' <br>
 <br>
 This code has been tested in the following environment：<br>
-  ·CUDA 11.8 <br>
-  ·GCC 9.3.0 <br>
-  ·G++ 9.3.0 <br>
-  ·Cmake 3.22.1 <br>
+  - CUDA 11.8 <br>
+  - GCC 9.3.0 <br>
+  - G++ 9.3.0 <br>
+  - Cmake 3.22.1 <br>
 
 ## Subsequent Updates
   The Pytorch version will be released soon.
