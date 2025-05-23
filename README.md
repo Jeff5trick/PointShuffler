@@ -1,6 +1,6 @@
 # PointShuffler
 ##  Anonymous Account Notice
- ·The submission account is purely anonymized and has no link to real-world identities.
+ ·The submission account is purely anonymized and has no link to real-world identities. 
  ·This is a newly created blank account with no prior code submissions or historical activity.
  
 ## Environment
