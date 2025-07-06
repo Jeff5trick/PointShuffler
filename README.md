@@ -1,12 +1,10 @@
 # PointShuffler
-##  Anonymous Account Notice
- ·The submission account is purely anonymized and has no link to real-world identities. <br>
- ·This is a blank account with no prior code submissions or historical activity.
+This is the code of paper "PointShuffler: Accelerating Point Cloud Neural Networks on General-Purpose GPUs"
  
 ## Install
-The latest codes are tesed on CUDA 11.9  Python 3.8 and Pytorch 2.1
+The latest codes are tested on CUDA 11.8  Python 3.8 and Pytorch 2.1
 
-Conpile the CUDA layers for PointShuffler:
+Compile the CUDA layers for PointShuffler:
 ```python setup.py install```
 
 ## Run
