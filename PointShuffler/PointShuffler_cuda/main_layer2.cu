@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
     cudaSetDevice(7);
 
 
-    const int n=512, m=256, K=32;
+    const int n=512, m=128, K=64;
     float r = 0.4;
     const int block_size = 10;
 
