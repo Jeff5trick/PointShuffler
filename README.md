@@ -24,6 +24,7 @@ Speed Comparison between the original network [Votenet](https://github.com/yanx2
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Layer 1|-|11.86×|1.46×|1.75×|1.39×|2.37×|
 |Layer 2|-|2.90×|1.37×|13.50×|0.90×|3.39×|
+
 Note: Additional overhead has been introduced to adapt to the Pytorch framework, resulting in a weakened acceleration effect.
 
 ## Acknowledgment
