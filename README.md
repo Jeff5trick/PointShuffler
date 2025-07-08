@@ -8,24 +8,24 @@ Compile the CUDA layers for PointShuffler:
 ```python setup.py install```
 
 ## Run
-To run the accuracy and speed test on Pytorch:
+To run the accuracy and speed tests on Pytorch:
 ```python test_classification.py --log_dir pointnet2_cls_ssg```
 
 ## Result
 ### Accuracy Comparison
-Accuracy Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant, indicating that our optimization algorithm only requires a relatively low precision overhead.
+Accuracy Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant, indicating that our optimization only requires a low precision loss.
 |Task|Original ACC|Optimzed ACC|
 |:---:|:---:|:---:|
 |Classification|89.1|92.2|
 
 ### Speed Comparison
-Speed Comparison between the original PointNet++ in [Votenet](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) project and our optimized variant.
+Speed Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant.
 |Layer|Sub-block Partitioning|Sampling|Neighbor Search|Feature Update|Aggregation|All|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Layer 1|-|11.86×|1.46×|1.75×|1.39×|2.37×|
 |Layer 2|-|2.90×|1.37×|13.50×|0.90×|3.39×|
 
-Note: Additional overhead has been introduced to adapt to the Pytorch framework, resulting in a weakened acceleration effect.
+Note: Additional overhead has been introduced to adapt to the Pytorch implementation, resulting in a weakened acceleration effect.
 
 ## Acknowledgment
 This project is partially based on [Pointnet_Pointnet2_pytorch](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) by yanx27, licensed under the MIT License (Copyright (c) 2019 benny).
