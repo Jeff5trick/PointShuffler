@@ -13,13 +13,13 @@ To run the accuracy and speed test on Pytorch:
 
 ## Result
 ### Accuracy Comparison
-Accuracy Comparison between the original network [Pointnet_Pointnet2_pytorch](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant.
+Accuracy Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant, indicating that our optimization algorithm only requires a relatively low precision overhead.
 |Task|Original ACC|Optimzed ACC|
 |:---:|:---:|:---:|
 |Classification|89.1|92.2|
 
 ### Speed Comparison
-Speed Comparison between the original network [Votenet](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant.
+Speed Comparison between the original PointNet++ in [Votenet](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) project and our optimized variant.
 |Layer|Sub-block Partitioning|Sampling|Neighbor Search|Feature Update|Aggregation|All|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Layer 1|-|11.86×|1.46×|1.75×|1.39×|2.37×|
