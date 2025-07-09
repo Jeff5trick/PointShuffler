@@ -19,7 +19,7 @@ Accuracy comparison between the [original PointNet++](https://github.com/horizon
 |Classification|89.9|90.8|
 
 ### Execution latency
-Execution latencies(ms) of our optimized variant.
+Execution latencies (ms) of our optimized variant.
 |Layer|Sub-block Partitioning|Sampling|Feature Update|Neighbor Search|Aggregation|All|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Layer 1|0.090|0.068|o.415|0.126|0.064|0.764|
