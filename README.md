@@ -13,17 +13,17 @@ To run the accuracy and speed tests on Pytorch:
 
 ## Result
 ### Accuracy Comparison
-Accuracy Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant, indicating that our optimization only requires a low precision loss.
-|Task|Original ACC|Optimzed ACC|
+Accuracy comparison between the [original PointNet++](https://github.com/horizon-research/efficient-deep-learning-for-point-clouds) and our optimized variant, indicating that our optimization only requires a low precision loss.
+|Task|Original|Ours|
 |:---:|:---:|:---:|
 |Classification|89.9|90.8|
 
-### Speed Comparison
-Speed Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant.
-|Layer|Sub-block Partitioning|Sampling|Neighbor Search|Feature Update|Aggregation|All|
+### Execution latency
+Execution latencies(ms) of our optimized variant.
+|Layer|Sub-block Partitioning|Sampling|Feature Update|Neighbor Search|Aggregation|All|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Layer 1|-|11.86×|1.46×|1.75×|1.39×|2.37×|
-|Layer 2|-|2.90×|1.37×|13.50×|0.90×|3.39×|
+|Layer 1|0.090|0.068|o.415|0.126|0.064|0.764|
+|Layer 2|0.088|0.065|0.418|0.132|0.063|0.768|
 
 Note: Additional overhead has been introduced to adapt to the Pytorch implementation, resulting in a weakened acceleration effect.
 
