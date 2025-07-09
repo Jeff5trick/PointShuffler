@@ -16,7 +16,7 @@ To run the accuracy and speed tests on Pytorch:
 Accuracy Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant, indicating that our optimization only requires a low precision loss.
 |Task|Original ACC|Optimzed ACC|
 |:---:|:---:|:---:|
-|Classification|89.1|92.2|
+|Classification|90.4|90.5|
 
 ### Speed Comparison
 Speed Comparison between the [original PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and our optimized variant.
