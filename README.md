@@ -1,5 +1,6 @@
 # PointShuffler
-This is the code of paper "PointShuffler: Accelerating Point Cloud Neural Networks on General-Purpose GPUs"
+This is the code of paper "PointShuffler: Accelerating Point Cloud Neural Networks on General-Purpose GPUs".
+We integrate all our proposed CUDA operators as PyTorch extensions and release our pre-trained weight at path ```/log/classification/pointnet2_cls_ssg/checkpoints```.
  
 ## Install
 The latest codes are tested on CUDA 11.8  Python 3.8 and Pytorch 2.1
@@ -20,6 +21,7 @@ Accuracy comparison between the [original PointNet++](https://github.com/horizon
 
 ### Execution latency
 Execution latencies (ms) comparison between [a baseline with conventional CUDA optimization](https://github.com/facebookresearch/votenet) and our optimized variant.
+
 Layer1:
 |Layer|Sub-block Partitioning|Sampling|Feature Update|Neighbor Search|Aggregation|All|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
