@@ -1,6 +1,5 @@
 # PointShuffler
-This is the code of paper "PointShuffler: Accelerating Point Cloud Neural Networks on General-Purpose GPUs".
-We integrate all our proposed CUDA operators as PyTorch extensions and release our pre-trained weight at path ```/log/classification/pointnet2_cls_ssg/checkpoints```.
+This is the code of the paper "PointShuffler: Accelerating Point Cloud Neural Networks on General-Purpose GPUs". We implemented our proposed method using CUDA to accelerate point cloud processing, and integrated these CUDA operators as PyTorch extensions. We also release our pre-trained weights at the path /log/classification/pointnet2_cls_ssg/checkpoints.
  
 ## Install
 The latest codes are tested on CUDA 11.8  Python 3.8 and Pytorch 2.1
