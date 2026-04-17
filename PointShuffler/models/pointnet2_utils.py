@@ -12,7 +12,6 @@ import shared_aggregation
 import unique_aggregation
 
 
-
 def uniform_sampling(xyz,npoint,step,block_size, xyz_offset):
     start_event = torch.cuda.Event(enable_timing=True)
     end_event = torch.cuda.Event(enable_timing=True)
@@ -24,14 +23,14 @@ def uniform_sampling(xyz,npoint,step,block_size, xyz_offset):
     end_event.record()
     torch.cuda.synchronize()
     partitioning_time = start_event.elapsed_time(end_event)
-    # print(f"partitioning time: {partitioning_time:.4f} ms")
     
     start_event.record()
-    fps_idx, xyz_centers = sampling.parallel_strided_sampling(xyz, u_order, npoint) 
+    fps_idx, xyz_centers = sampling.parallel_strided_sampling(xyz, u_order, npoint)
+
+
     end_event.record()
     torch.cuda.synchronize()
     sampling_time = start_event.elapsed_time(end_event)
-    # print(f"sampling time: {sampling_time:.4f} ms")
 
     return fps_idx, xyz_centers, u_order, u_len, u_offset, point2group,partitioning_time,sampling_time
 
@@ -61,7 +60,6 @@ def neighbor_search_common (block_size, hop, nsample, radius,centers, point2grou
     end_event.record()
     torch.cuda.synchronize()
     neighbor_search_time = start_event.elapsed_time(end_event)
-    # print(f"neighbor_search time: {neighbor_search_time:.4f} ms")
     
     return have_center, isn_shared, searching_length, searching_offset, _1center_in_group, ns_index, shared_len, neighbor_len,neighbor_search_time
 
@@ -83,7 +81,7 @@ class PointShufflerSetAbstraction(nn.Module):
             last_channel = out_channel
         self.group_all = group_all
         
-        self.max_coordinate = 2.#点云坐标范围
+        self.max_coordinate = 2.
         self.correction_factor = 0.0002
         if block_size != None:
             self.block_num = block_size ** 3
@@ -109,11 +107,11 @@ class PointShufflerSetAbstraction(nn.Module):
             new_xyz: sampled points position data, [B, C, S]
             new_points_concat: sample points feature data, [B, D', S]
         """
-
+       
         _, _, N = xyz.shape
-
+    
         xyz = xyz.permute(0, 2, 1)
-        
+        # print("xyz = ",xyz)
 
         if points is not None:
             points = points.permute(0, 2, 1)
@@ -132,7 +130,6 @@ class PointShufflerSetAbstraction(nn.Module):
         end_event.record()
         torch.cuda.synchronize()
         feature_update_time = start_event.elapsed_time(end_event)
-        # print(f"feature_update time: {feature_update_time:.4f} ms")
     
 
         if self.group_all:
@@ -145,6 +142,7 @@ class PointShufflerSetAbstraction(nn.Module):
             fps_idx, xyz_centers, u_order, u_len, u_offset, point2group,partitioning_time,sampling_time = uniform_sampling(xyz, self.npoint, self.step, self.block_size, self.xyz_offset)
 
             have_center, isn_shared, searching_length, searching_offset,_1center_in_group, ns_index, shared_len, neighbor_len,neighbor_search_time = neighbor_search_common(self.block_size, self.hop, self.nsample, self.radius, fps_idx,point2group,u_len,u_offset,u_order,xyz)          
+        
 
             new_points = new_points.squeeze(-2).squeeze(0).permute(1,0) 
 
@@ -155,14 +153,12 @@ class PointShufflerSetAbstraction(nn.Module):
             end_event.record()
             torch.cuda.synchronize()
             shared_aggregation_time = start_event.elapsed_time(end_event)
-            # print(f"shared_aggregation time: {shared_aggregation_time:.4f} ms")
 
             start_event.record()
-            sactter_result = unique_aggregation.unique_aggregation(fps_idx,point2group,new_points,ns_index,isn_shared,searching_length,searching_offset,gather_result,shared_len,self.nsample)
+            sactter_result = unique_aggregation.unique_aggregation(fps_idx,point2group,new_points,ns_index,isn_shared,neighbor_len,searching_offset,gather_result,shared_len,self.nsample)
             end_event.record()
             torch.cuda.synchronize()
             unique_aggregation_time = start_event.elapsed_time(end_event)
-            # print(f"unique_aggregation time: {unique_aggregation_time:.4f} ms")
 
             new_points = sactter_result.unsqueeze(0).permute(0, 2 ,1) 
             new_xyz = xyz_centers.unsqueeze(0).permute(0, 2, 1)
