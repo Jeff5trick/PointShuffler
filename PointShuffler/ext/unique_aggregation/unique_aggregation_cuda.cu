@@ -6,7 +6,7 @@ __global__ void unique_aggregation_kernel(const int n, const int m,  const int c
                                float *__restrict__ mlp_result,
                                int *__restrict__ ns_index,
                                bool *__restrict__ isn_agv,
-                               int *__restrict__ searching_length,
+                               int *__restrict__ neighbor_len,
                                int *__restrict__ searching_offset,
                                float *__restrict__ gather_result,
                                int *__restrict__ shared_len, 
@@ -28,12 +28,7 @@ __global__ void unique_aggregation_kernel(const int n, const int m,  const int c
         {
             float max_value = gather_result[u_group*channel+j];
 
-            
-            
-            
-            
-
-            int neighbor_num = min(shared_k, searching_length[i]);
+            int neighbor_num = min(shared_k, neighbor_len[i]);
 
             for(int k=0; k< neighbor_num - len ;k++)
             {
@@ -57,7 +52,7 @@ void unique_aggregation_kernel_launcher(const int n, const int m, const int chan
                             float *__restrict__ mlp_result,
                             int *__restrict__ ns_index,
                             bool *__restrict__ isn_agv,
-                            int *__restrict__ searching_length,
+                            int *__restrict__ neighbor_len,
                             int *__restrict__ searching_offset,
                             float *__restrict__ gather_result,
                             int *__restrict__ shared_len,
@@ -68,7 +63,7 @@ void unique_aggregation_kernel_launcher(const int n, const int m, const int chan
     dim3 block(channel);
     if(block.x > 1024)
         block.x =1024;
-    unique_aggregation_kernel<<<grid, block, n*sizeof(bool), stream>>>(n, m,  channel, shared_k, centers, point2group, mlp_result, ns_index, isn_agv, searching_length, searching_offset, gather_result, shared_len, result);
+    unique_aggregation_kernel<<<grid, block, n*sizeof(bool), stream>>>(n, m,  channel, shared_k, centers, point2group, mlp_result, ns_index, isn_agv, neighbor_len, searching_offset, gather_result, shared_len, result);
 }
 
 
